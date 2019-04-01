@@ -1,1 +1,1 @@
-web: python api.py puckager_api.py runserver 0.0.0.0:$PORT
+web: gunicorn puckager_api.wsgi --pythonpath=puckager_api --log-file -
