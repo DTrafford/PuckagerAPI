@@ -23,7 +23,8 @@ TWITTER_DIR = os.path.join(BASE_DIR, 'Scouting_Twits')
 SECRET_KEY = 'wy9e_4td4v*%f*6dh)i1_=vd8$@a)&ft6fj=wv370t!$)mwv07'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+ALLOWED_HOSTS = ['https://packager-crawler.herokuapp.com']
 
 ALLOWED_HOSTS = []
 
@@ -133,7 +134,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-# Configure Django App for Heroku.
-import django_heroku
-django_heroku.settings(locals())
