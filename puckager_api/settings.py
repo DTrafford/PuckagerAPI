@@ -58,7 +58,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_REPLACE_HTTPS_REFERER = True
+CORS_ORIGIN_WHITELIST = ['localhost:4200', 'puckager.herokuapp.com']
 
 # CORS_ORIGIN_WHITELIST = (
 #     'localhost:4200'
