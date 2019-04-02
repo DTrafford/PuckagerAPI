@@ -1,1 +1,1 @@
-web: gunicorn puckager_api.wsgi --pythonpath=puckager_api --log-file -
+web: waitress-serve --port=$PORT puckager_api.wsgi:application
