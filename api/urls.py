@@ -10,7 +10,7 @@ router.register('api', TweetViewSet, base_name='api')
 
 
 urlpatterns = [
-    path("twitter", TweetList.as_view(), name="tweet_list"),
+    path("twitter/", TweetList.as_view(), name="tweet_list"),
     # path("polls/<int:pk>/", PollDetail.as_view(), name="polls_detail"),
     # path("polls/<int:pk>/choices/", ChoiceList.as_view(), name="choice_list"),
     # path("polls/<int:pk>/choices/<int:choice_pk>/vote/", CreateVote.as_view(), name="create_vote"),

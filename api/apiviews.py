@@ -37,6 +37,10 @@ class TweetViewSet(viewsets.ModelViewSet):
 ## USING GENERIC VIEWW ###
 # class TweetList(generics.ListAPIView):
 class TweetList(APIView):
+
+    def get(self, requste):
+        return Response('IN GET')
+        
     def post(self, request):
         print("REQUEST = ", request.data)
         # print("REQUEST = ", request.options)

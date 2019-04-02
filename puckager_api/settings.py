@@ -23,7 +23,7 @@ TWITTER_DIR = os.path.join(BASE_DIR, 'Scouting_Twits')
 SECRET_KEY = 'wy9e_4td4v*%f*6dh)i1_=vd8$@a)&ft6fj=wv370t!$)mwv07'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['packager-crawler.herokuapp.com', 'localhost', '127.0.0.1', '[::1]']
 
 ALLOWED_HOSTS = []
@@ -50,14 +50,15 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsPostCsrfMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.common.BrokenLinkEmailsMiddleware',
-    'django.middleware.common.CommonMiddleware',
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_REPLACE_HTTPS_REFERER = True
 
 # CORS_ORIGIN_WHITELIST = (
 #     'localhost:4200'
