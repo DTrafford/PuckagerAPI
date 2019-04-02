@@ -27,8 +27,6 @@ DEBUG = True
 # DEBUG = False
 ALLOWED_HOSTS = ['packager-crawler.herokuapp.com', 'localhost', '127.0.0.1', '[::1]']
 
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -42,7 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'api',
-    'corsheaders'
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +57,6 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ORIGIN_WHITELIST = ['localhost', 'puckager.herokuapp.com']
 
 # CORS_ORIGIN_WHITELIST = (
 #     'localhost:4200'
