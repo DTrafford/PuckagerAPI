@@ -13,8 +13,6 @@ import pprint
 import os.path
 BASE = os.path.dirname(os.path.abspath(__file__))
 
-# data = open(os.path.join(BASE, "snp_data.txt"))
-
 # Variables that contains the user credentials to access Twitter API
 # region  NOT FOR PUBLIC EYES
 access_token = "1105994278289838081-KnlpnzyLPWh008p7UlubKDNNI9E4oN"
@@ -29,18 +27,11 @@ api = tweepy.API(auth, parser=tweepy.parsers.JSONParser())
 
 player_name = ''
 
-# tweets_data_path = 'data/player_raw_data'+player_name+'.json'
 tweets_data_path = os.path.join(BASE, 'data/twitter_data.json')
 
 tweets_data = []
-# tweets_file = open(tweets_data_path, "r")
-tweets_file = open(tweets_data_path)
 
-# # tweets_data_path = 'data/player_raw_data_'+player_name+'.json'
-# tweets_data_path = os.path.join(BASE, 'data/twitter_data.json')
-#
-# tweets_data = []
-# tweets_file = open(tweets_data_path)
+tweets_file = open(tweets_data_path)
 
 
 class TwitterListener(StreamListener):
@@ -70,65 +61,18 @@ def user_stream(name):
     while len(serached_tweets) < max_tweets:
         count = max_tweets - len(serached_tweets)
         try:
-            new_tweets = api.search(q=name, count=count, max_id=str(last_id - 1))
+            new_tweets = api.search(
+                q=name, count=count, max_id=str(last_id - 1))
             print('NEW TWEETS = ', new_tweets)
             if not new_tweets:
                 break
             for tweet in new_tweets['statuses']:
                 serached_tweets.append(tweet)
-            # serached_tweets.extend(new_tweets)
-            # print(serached_tweets)
-            # print(new_tweets['statuses'][0]['id'])
+
             last_id = new_tweets['statuses'][0]['id']
         except tweepy.TweepError as e:
             break
     return serached_tweets
-
-    # for status in tweepy.Cursor(api.search, q=name).items(10):
-    #     stream = Stream(auth, TwitterListener(status))
-    #     list_of_keywords.keywords.append(name)
-    #     # stream.filter(track=list_of_keywords.keywords)
-    #     stream.filter(track=keywords_to_search)
-    #     stream.filter(follow=user.id)
-    #     stream.filter(location='Canada')
-    #     stream.filter(count=10)
-    #     stream.filter(limit=10)
-    #     stream.filter(async=True)
-
-
-
-
-    ####### GABRIELE CODE ############
-    # player_name = name
-    # user = api.get_user(screen_name=name)
-    # stream = Stream(auth, TwitterListener())
-
-    # # stream.filter(follow=user,track=list_of_keywords.keywords)
-    # # stream.filter(track=list_of_keywords.keywords)
-    # keywords_to_search = list_of_keywords.keywords
-    # keywords_to_search.append(name)
-    # print('NAME IN USER_STREAM', name)
-    # # stream.filter(track=keywords_to_search)
-    # stream.filter(track=keywords_to_search)
-    # stream.filter(follow=user.id)
-    # stream.filter(location='Canada')
-    # stream.filter(count=10)
-    # stream.filter(limit=10)
-    # stream.filter(async=True)
-
-###################################
-    # Tyler's cursor limitation code
-    # # user = list(tweepy.Cursor(api.search, q=name, result_type='recent').items(10))
-    # for status in tweepy.Cursor(api.search, q=name).items(10):
-    #     stream = Stream(auth, TwitterListener(status))
-    #     list_of_keywords.keywords.append(name)
-    #     # stream.filter(track=list_of_keywords.keywords)
-    #     stream.filter(track=keywords_to_search)
-    #     stream.filter(follow=user.id)
-    #     stream.filter(location='Canada')
-    #     stream.filter(count=10)
-    #     stream.filter(limit=10)
-    #     stream.filter(async=True)
 
 
 def scrape_raw_data_by_user(data_path):
@@ -143,8 +87,7 @@ def scrape_raw_data_by_user(data_path):
     output_json = []
     output_data = {}
 
-    # print(data)
-    for i in range(0,len(data)):
+    for i in range(0, len(data)):
         # print(str(i))
         output_data["row"] = str(i)
         output_data['id'] = data[i]['id']
@@ -159,21 +102,13 @@ def scrape_raw_data_by_user(data_path):
             output_data['url'] = data["url"]
         except:
             pass
-        # finally include the line into the dict
-        # print(output_data)
-        # TODO WHYYYYYY DOES THIS COPY LAST LINE TO EVERY LINE
+
         output_json.append(output_data)
-    # output_json = json.dumps(output_data)
 
     return output_json
 
 
-
-    # df = pd.DataFrame()
-    # df['']
-
 if __name__ == '__main__':
     user_stream("Gretzky")
     output = scrape_raw_data_by_user(tweets_file)
-    # print(output)
     pprint.pprint(output)

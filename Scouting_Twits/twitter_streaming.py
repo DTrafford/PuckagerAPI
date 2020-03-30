@@ -1,4 +1,4 @@
-#TODO SIMILAR TO USER STREAMING BUT PULLS ALL CODE
+# TODO SIMILAR TO USER STREAMING BUT PULLS ALL CODE
 
 import tweepy
 from tweepy.streaming import StreamListener
@@ -15,7 +15,7 @@ access_token = "1105994278289838081-KnlpnzyLPWh008p7UlubKDNNI9E4oN"
 access_token_secret = "5NopQKoZycsOoOATfYDzdf8Ujx3oGLSC8Lwyj7ks1HILz"
 consumer_key = "9Z49YWOPFiwAolKQbZFxdvXFy"
 consumer_secret = "b1PIijzElDvAcUzayEYwJ2tNx34QqFJcqwqWGK8ptExPGiupnM"
-#endregion
+# endregion
 
 
 # This is a basic listener that just prints received tweets to stdout.
@@ -38,8 +38,6 @@ class TwitterListener(StreamListener):
         print(status)
         return True
 
-# twitter_stream = Stream(auth, MyListener())
-# twitter_stream.filter(track=['#python'])
 
 if __name__ == '__main__':
 
@@ -51,4 +49,3 @@ if __name__ == '__main__':
     stream = Stream(auth, TwitterListener())
     # This line filter Twitter Streams to capture data by the keywords
     # stream.filter(track=['dgf', 'hockey', 'score', 'goal', 'save'])
-
